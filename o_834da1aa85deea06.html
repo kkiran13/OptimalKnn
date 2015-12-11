@@ -1,0 +1,721 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.6.2 (Linux)">
+	<META NAME="CREATED" CONTENT="20151208;194455593366082">
+	<META NAME="CHANGED" CONTENT="20151211;12234630627538">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.5in 11in; margin-left: 0.79in; margin-right: 0.79in; margin-top: 0.71in; margin-bottom: 0.79in }
+		P { margin-bottom: 0.1in; line-height: 120% }
+		TD P { margin-bottom: 0in }
+		A:link { so-language: zxx }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P ALIGN=CENTER STYLE="margin-bottom: 0.2in; font-variant: normal; font-style: normal; line-height: 100%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=6><B><SPAN STYLE="background: transparent">CSE
+603: Parallel and Distributed Processing</SPAN></B></FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0.2in; font-weight: normal; line-height: 100%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><BR>				        </FONT></FONT>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0.2in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4 STYLE="font-size: 16pt"><SPAN STYLE="background: transparent">Sarthak
+Bhat (50134371)</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4 STYLE="font-size: 16pt"><SPAN STYLE="background: transparent">Karthik
+Kiran (50133145)</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="line-height: 100%"><BR><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4 STYLE="font-size: 16pt"><SPAN STYLE="background: transparent">Under
+the guidance of:</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4 STYLE="font-size: 16pt"><SPAN STYLE="background: transparent">Dr.
+Jaroslaw Zola</SPAN></FONT></FONT></FONT></P>
+<P STYLE="font-weight: normal"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><BR><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT SIZE=4><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">Introduction:</SPAN></B></SPAN></FONT></SPAN></FONT></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">This
+project involves solving k nearest neighbor problem using Sparks
+distributed processing technology. We obtained data set of different
+retail stores distribution in Manhattan, NY over a region of 200 sq
+km. The problem involved computing k nearest neighbor for each store
+in this data set. </SPAN></FONT></FONT></FONT>
+</P>
+<P><BR><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B><SPAN STYLE="background: transparent">Implementation:</SPAN></B></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">We
+have implemented four different solutions which includes a serial
+solution,</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-weight: normal; line-height: 138%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">O(n</SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SUP><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">2</SPAN></SPAN></SUP></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">)</SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="background: transparent">
+</SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">solution
+and an optimized solution to the same problem and compared the pros
+and cons of each solution. </SPAN></SPAN></SPAN></FONT></SPAN></FONT></FONT>
+</P>
+<OL>
+	<LI><P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; background: transparent; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Serial
+	Implementation: Serial solution was the first of all implementations
+	which we implemented using pythons spatial KD tree library. This was
+	our benchmark with which we wanted to compare over other implemented
+	solutions. The algorithm’s running time was O(nlogn)</SPAN></FONT></FONT></FONT></P>
+	<LI><P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; background: transparent; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Spark
+	O(n</SPAN><SUP><SPAN STYLE="background: transparent">2</SPAN></SUP><SPAN STYLE="background: transparent">)
+	Implementation with group by key: This implementation involved
+	computing distance of every point with every other point , sorting
+	it based on distance and the returning k nearest for each point.
+	This was a O(n</SPAN><SUP><SPAN STYLE="background: transparent">2</SPAN></SUP><SPAN STYLE="background: transparent">)
+	implementation.</SPAN></FONT></FONT></FONT></P>
+	<LI><P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; background: transparent; line-height: 138%">
+	<SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">Spark
+	O(n</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SUP><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">2</SPAN></SPAN></SPAN></FONT></FONT></SUP></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">)
+	Implementation with combine by key: This implementation was a
+	modified version of the second implementation. After reading the
+	</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">C</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">loudera
+	</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></SPAN><A HREF="http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-1/"><SPAN STYLE="font-variant: normal"><FONT COLOR="#1155cc"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><U><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">blog</SPAN></SPAN></U></SPAN></FONT></FONT></SPAN></FONT></SPAN></A><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">
+	we replaced the group by key by a custom reducer to understand the
+	performance benefit .</SPAN></SPAN></SPAN></FONT></FONT></SPAN></FONT></SPAN></P>
+	<LI><P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; background: transparent; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Optimal
+	KNN: This implementation involved clustering the points based on the
+	distance from origin into different partitions. We ran nearest
+	neighbor algorithm on each partition and extracted the k nearest
+	neighbors. The below example summarized the implemented algorithm.</SPAN></FONT></FONT></FONT></P>
+</OL>
+<P ALIGN=JUSTIFY STYLE="margin-left: 0.5in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Consider
+you have input which has n points where each point p=(x,y) contains
+the latitude and longitude of the place. We went ahead and calculated
+the the euclidean distance of each point from the origin which helped
+us represent each point in 1D. We then sorted all the points based on
+this value.</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-left: 0.5in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">The
+sorted 1D array was divided into p parts where each part was
+associated with partition ID. The reasoning behind this is that the k
+nearest neighbors of each point will be in the current partition or
+in the adjacent partition if the partition size is appropriately
+chosen.</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-left: 0.5in; margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">We
+then associate each point to a partition id and the points which are
+on the boundary gets associated with two partitions. We compute
+distance of every point with the every point in the partitions it
+belongs to obtain k nearest neighbor.</SPAN></FONT></FONT></FONT></P>
+<P STYLE="font-weight: normal"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><BR><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT SIZE=4><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">Analysis:</SPAN></B></SPAN></FONT></SPAN></FONT></SPAN></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B><SPAN STYLE="background: transparent">Experiment
+1</SPAN></B></FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Performance
+of Serial and N Square implementations</SPAN></B></FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0in; line-height: 120%"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">i)</SPAN></B></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">
+</SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">Serial
+Implementation using KD Tree in Python</SPAN></B></SPAN></SPAN></FONT></SPAN></FONT></FONT></P>
+<TABLE WIDTH=342 CELLPADDING=7 CELLSPACING=0>
+	<COL WIDTH=99>
+	<COL WIDTH=213>
+	<TR>
+		<TD WIDTH=99 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Data
+			Size</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=213 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Execution
+			Time (Seconds)</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=99 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">2500</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=213 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">26</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=99 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">5000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=213 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">62</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=99 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">7500</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=213 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">127</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=99 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">10000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=213 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">148</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; line-height: 120%; text-decoration: none">
+<FONT COLOR="#000000"><SPAN STYLE="background: transparent"><IMG SRC="i_834da1aa85deea06_html_67534786.png" NAME="Image1" WIDTH=642 HEIGHT=340 BORDER=0></SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in; font-weight: normal; line-height: 138%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">ii)</SPAN></B></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="background: transparent">
+</SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">N
+Square Implementation using Group By Key</SPAN></B></SPAN></SPAN></FONT></SPAN></FONT></FONT></P>
+<P STYLE="text-indent: 0.5in; margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 120%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Parameter
+Settings:</SPAN></B></FONT></FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; background: transparent; font-variant: normal; font-style: normal; font-weight: normal; line-height: 120%; text-decoration: none">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Number
+	of Nodes = 2</SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in; background: transparent; font-variant: normal; font-style: normal; font-weight: normal; line-height: 120%; text-decoration: none">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Executors<SPAN STYLE="background: transparent">
+	per </SPAN>Node<SPAN STYLE="background: transparent"> = 1</SPAN></SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in; background: transparent; font-variant: normal; font-style: normal; font-weight: normal; line-height: 120%; text-decoration: none">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Executor
+	Cores = 4</SPAN></FONT></FONT></FONT></P>
+</UL>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=336 CELLPADDING=7 CELLSPACING=0>
+	<COL WIDTH=81>
+	<COL WIDTH=225>
+	<TR>
+		<TD WIDTH=81 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Data
+			Size</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=225 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Execution
+			Time (Seconds)</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=81 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">2500</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=225 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">81</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=81 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">5000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=225 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">274</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=81 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">7500</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=225 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">726</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=81 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">10000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=225 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">1333</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; line-height: 120%; text-decoration: none">
+<FONT COLOR="#000000"><SPAN STYLE="background: transparent"><IMG SRC="i_834da1aa85deea06_html_1c0e4ed3.png" NAME="Image2" ALIGN=BOTTOM WIDTH=642 HEIGHT=360 BORDER=0></SPAN></FONT></P>
+<P><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-weight: normal"><BR><BR></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">iii)</SPAN></B></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">
+</SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">N
+Square Implementation using Combine By Key</SPAN></B></SPAN></SPAN></FONT></SPAN></FONT></FONT></P>
+<P STYLE="text-indent: 0.5in; margin-bottom: 0in; font-weight: normal; line-height: 120%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">Parameter
+Settings:</SPAN></B></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="background: transparent">
+</SPAN></SPAN></FONT></SPAN></FONT></FONT>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; background: transparent; font-variant: normal; font-style: normal; font-weight: normal; line-height: 120%; text-decoration: none">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Number
+	of Nodes = 2</SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in; background: transparent; font-variant: normal; font-style: normal; font-weight: normal; line-height: 120%; text-decoration: none">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Executors
+	per Node = 1</SPAN></FONT></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in; background: transparent; font-variant: normal; font-style: normal; font-weight: normal; line-height: 120%; text-decoration: none">
+	<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">Executor
+	Cores = 4</SPAN></FONT></FONT></FONT></P>
+</UL>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=330 CELLPADDING=7 CELLSPACING=0>
+	<COL WIDTH=105>
+	<COL WIDTH=195>
+	<TR>
+		<TD WIDTH=105 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Data
+			Size</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=195 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Execution
+			Time (Seconds)</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=105 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">2500</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=195 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">73</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=105 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">5000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=195 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">311</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=105 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">7500</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=195 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">792</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=105 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">10000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=195 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">1545</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; line-height: 120%; text-decoration: none">
+<FONT COLOR="#000000"><SPAN STYLE="background: transparent"><IMG SRC="i_834da1aa85deea06_html_375284e4.png" NAME="Image3" ALIGN=BOTTOM WIDTH=654 HEIGHT=337 BORDER=0></SPAN></FONT></P>
+<P><BR><BR>
+</P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-weight: normal; line-height: 138%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">As
+we see from the above experiments that serial implementation which
+uses KD Tree and has a running time O(nlogn) easily outperforms the
+parallel O(n</SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SUP><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">2</SPAN></SPAN></SUP></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">)
+algorithm. Hence we decided to use a new approach by clustering the
+points into groups based on their distance from the origin. The
+results of this program is shown below.</SPAN></SPAN></SPAN></FONT></SPAN></FONT></FONT></P>
+<P STYLE="font-weight: normal"><BR><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B><SPAN STYLE="background: transparent">Experiment
+2</SPAN></B></FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Heuristic
+for choosing the value of no of partitions Optimal KNN.</SPAN></B></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-weight: normal; line-height: 138%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">We
+used original data set which had around 85000 points for this
+experiment. Choosing the right value of partition plays a very
+critical role on the running time. We were able to verify this by
+changing the number of partitions for the same data size and
+observing the behavior pattern. We knew that </SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><I><SPAN STYLE="background: transparent">Datasize</SPAN></I></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><I><B><SPAN STYLE="background: transparent">/</SPAN></B></I></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><I><SPAN STYLE="background: transparent">NoOfParts&gt;=k</SPAN></I></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="background: transparent">
+</SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">to
+maintain the minimum accuracy.</SPAN></SPAN></SPAN></FONT></SPAN></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">As
+expected as the number of partitions increases the time taken
+decreases. We observed the same behavior over different data sizes
+which we have plotted in the below graph. We ran each of this
+experiment on 2 Nodes with 1 executor where each executor had 4
+cores. The value of k(Number of nearest neighbors) was set to 5. The
+ratio of data size to number of partition was varied between 5,10 and
+20.</SPAN></FONT></FONT></FONT></P>
+<OL>
+	<P ALIGN=CENTER STYLE="margin-bottom: 0in; background: transparent; line-height: 138%">
+	</P>
+</OL>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; background: transparent; line-height: 138%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">a)
+ </SPAN></SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="font-weight: normal"><SPAN STYLE="background: transparent">50K
+points grouped into partitions of 10K,5K and 2.5K</SPAN></SPAN></SPAN></SPAN></FONT></SPAN></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><SPAN STYLE="background: transparent"><IMG SRC="i_834da1aa85deea06_html_5f419eac.png" NAME="Image4" ALT="Time taken vs number of partitions.png" ALIGN=BOTTOM WIDTH=652 HEIGHT=294 BORDER=0></SPAN></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; line-height: 138%; text-decoration: none">
+<BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">b)100K
+points grouped into partitions of 20K,10K and 5k</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; line-height: 100%; text-decoration: none">
+<BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; line-height: 100%; text-decoration: none">
+<BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; line-height: 100%; text-decoration: none">
+<FONT COLOR="#000000"><SPAN STYLE="background: transparent"><IMG SRC="i_834da1aa85deea06_html_c99ab39c.png" NAME="Image5" WIDTH=602 HEIGHT=277 BORDER=0></SPAN></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">c)150
+K points grouped into 30K,15K and 7.5K</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 100%; text-decoration: none">
+<BR>
+</P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><SPAN STYLE="background: transparent"><IMG SRC="i_834da1aa85deea06_html_483a15a9.png" NAME="Image6" ALT="Time taken vs Number of partitions (150K Data).png" WIDTH=639 HEIGHT=308 BORDER=0></SPAN></FONT></P>
+<P><BR><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=4><B><SPAN STYLE="background: transparent">Experiment
+3</SPAN></B></FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Performance
+of Optimal Knn with large data size:</SPAN></B></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">This
+experiment was performed to understand the scalability performance of
+our code with data size. Our existing code does group By based on
+number of nodes. If we have more executors means we can do more group
+By operations in parallel and hence we can make use of the all the
+executors that are available. Hence the output will be available in
+different parts depending on the number of nodes.</SPAN></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">In
+the below experiment we have doubled the data points along with the
+number of nodes at each step keeping the ratio between them constant.
+As expected we see similar run times which indicates strong
+scalability.</SPAN></FONT></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=584 CELLPADDING=7 CELLSPACING=0>
+	<COL WIDTH=192>
+	<COL WIDTH=138>
+	<COL WIDTH=211>
+	<TR>
+		<TD WIDTH=192 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Data
+			Size</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=138 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Nodes</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=211 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Execution
+			Time (Seconds)</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=192 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">50,000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=138 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">1</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=211 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">151</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=192 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">100,000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=138 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">2</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=211 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">163</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=192 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">200,000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=138 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">4</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=211 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">175</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=192 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">400,000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=138 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">8</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=211 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">193</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=192 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">800,000</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=138 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">16</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=211 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">211</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P ALIGN=CENTER STYLE="font-weight: normal"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><BR><BR><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT SIZE=4><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">Experiment
+4</SPAN></B></SPAN></FONT></SPAN></FONT></SPAN></FONT></FONT></P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Performance
+of Optimal Knn with number of nodes:</SPAN></B></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-variant: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><I><SPAN STYLE="background: transparent">Data
+Size=150,000; Number of Executor cores=4; Number of executors per
+node=1</SPAN></I></FONT></FONT></FONT></P>
+<P ALIGN=JUSTIFY STYLE="margin-bottom: 0in; font-weight: normal; line-height: 138%">
+<FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">For
+this experiment we had to limit our data set to 150K points. This is
+the maximum data one node can handle beyond which you can expect
+shuffle exceptions i.e </SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: #ffffff">the
+size of the data file to be sorted exceeds the available disk space
+on the worker node.</SPAN></SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="background: transparent">
+</SPAN></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><SPAN STYLE="background: transparent">So
+as we see the time taken reduces as the number of nodes double. But
+after a point the time remains the same which indicates that we must
+choose the amount of nodes to run on based on data size. For 1
+million points or beyond we observed that 16 nodes is very useful.
+Since we could not get the value of T1 for one million we conducted
+this experiment on 150K points. However in the previous experiment
+showed that the current solution is scalable on bigger data sets.</SPAN></SPAN></SPAN></FONT></SPAN></FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P ALIGN=CENTER STYLE="margin-bottom: 0in; font-variant: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><SPAN STYLE="background: transparent"><IMG SRC="i_834da1aa85deea06_html_100c7c05.png" NAME="Image7" ALT="Effeciency vs Number of nodes (150K points).png" ALIGN=BOTTOM WIDTH=617 HEIGHT=273 BORDER=0></SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=582 CELLPADDING=3 CELLSPACING=0>
+	<COL WIDTH=101>
+	<COL WIDTH=174>
+	<COL WIDTH=126>
+	<COL WIDTH=155>
+	<TR>
+		<TD WIDTH=101 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Nodes</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=174 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Execution
+			Time (Seconds)</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=126 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Speed
+			Up</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=155 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><B><SPAN STYLE="background: transparent">Efficiency</SPAN></B></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=101 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">1</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=174 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">220</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=126 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">1</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=155 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">100</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=101 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">2</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=174 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">116</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=126 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">1.89</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=155 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">94.82</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=101 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">4</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=174 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">61</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=126 BGCOLOR="#ffffff" STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">3.60</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=155 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">90.16</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=101 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">8</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=174 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">64</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=126 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">3.43</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=155 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">42.96</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=101 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">12</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=174 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">61</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=126 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">3.60</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=155 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">30.05</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=101 STYLE="border: 1px solid #000000; padding: 0.07in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">16</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=174 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">62</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=126 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">3.54</SPAN></FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=155 STYLE="border: 1px solid #000000; padding: 0.03in">
+			<P ALIGN=CENTER STYLE="font-variant: normal; font-style: normal; font-weight: normal; text-decoration: none">
+			<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">22.17</SPAN></FONT></FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="font-weight: normal"><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0in; line-height: 138%"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><FONT SIZE=4><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">Conclusion
+and Future Scope:</SPAN></B></SPAN></FONT></SPAN></FONT></SPAN><SPAN STYLE="font-variant: normal"><FONT COLOR="#000000"><SPAN STYLE="text-decoration: none"><SPAN STYLE="font-style: normal"><B><SPAN STYLE="background: transparent">
+</SPAN></B></SPAN></SPAN></FONT></SPAN></FONT></FONT>
+</P>
+<P STYLE="margin-bottom: 0in; font-variant: normal; font-style: normal; font-weight: normal; line-height: 138%; text-decoration: none">
+<FONT COLOR="#000000"><FONT FACE="Times New Roman, serif"><FONT SIZE=3><SPAN STYLE="background: transparent">As
+we observed that we were able to beat both serial and O(n2)
+implementation, K nearest neighbor is a really interesting problem to
+solve using parallel computing techniques. We have solved the problem
+for a 2d data points, however it would be really interesting to
+implement this for higher dimensional data sets. Also the performance
+of the current solution was completely based on the number of nodes
+available. We could consider more aspects on memory, executor cores
+and fine tune the performance.</SPAN></FONT></FONT></FONT></P>
+</BODY>
+</HTML>
