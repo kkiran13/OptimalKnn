@@ -5,3 +5,5 @@ args[0]="location of your jar" args[1]="location of your input directory" args[2
 For example as sample command may looklike below: ./spark-submit --class "OptimalKnn" --master local[4] /home/sarthakbhat/workspace/OptimalRetailStorePlacement/target/simple-project-1.0.jar /home/karthik/Documents/CSE603/Data/100k.txt /home/karthik/Documents/CSE603/Data/knnOutput 2 5
 The ouptput will be generated after the run in the directory given in args[3] in 4 different parts.
 NOTE:The current program has been tuned for data set within 200K points.For larger data set the we may have to run on at least 2-4 nodes to see good performance.
+
+Report is available at: http://htmlpreview.github.io/?https://github.com/kkiran13/OptimalKnn/blob/master/o_834da1aa85deea06.html
